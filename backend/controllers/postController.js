@@ -18,7 +18,7 @@ exports.createPost = async (req, res) => {
   }
 };
 
-// Get All Posts (Feed)
+// Get All Posts
 exports.getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find()
@@ -48,7 +48,7 @@ exports.getPostById = async (req, res) => {
   }
 };
 
-// Delete Post (only owner)
+// Delete Post
 exports.deletePost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -65,7 +65,9 @@ exports.deletePost = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-  // Toggle Like
+};
+
+// Toggle Like
 exports.toggleLike = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -78,12 +80,10 @@ exports.toggleLike = async (req, res) => {
     const alreadyLiked = post.likes.includes(userId);
 
     if (alreadyLiked) {
-      // Remove like
       post.likes = post.likes.filter(
         (id) => id.toString() !== userId
       );
     } else {
-      // Add like
       post.likes.push(userId);
     }
 
@@ -96,6 +96,4 @@ exports.toggleLike = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-};
-
 };

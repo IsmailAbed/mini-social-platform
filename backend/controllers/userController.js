@@ -18,7 +18,7 @@ exports.getUserProfile = async (req, res) => {
   }
 };
 
-// Update Profile (only self)
+// Update Profile
 exports.updateProfile = async (req, res) => {
   try {
     if (req.user !== req.params.id)
@@ -49,8 +49,9 @@ exports.getUserPosts = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+};
 
-  // Toggle Follow
+// Toggle Follow
 exports.toggleFollow = async (req, res) => {
   try {
     const targetUserId = req.params.id;
@@ -68,7 +69,6 @@ exports.toggleFollow = async (req, res) => {
     const alreadyFollowing = currentUser.following.includes(targetUserId);
 
     if (alreadyFollowing) {
-      // Unfollow
       currentUser.following = currentUser.following.filter(
         (id) => id.toString() !== targetUserId
       );
@@ -77,7 +77,6 @@ exports.toggleFollow = async (req, res) => {
         (id) => id.toString() !== currentUserId
       );
     } else {
-      // Follow
       currentUser.following.push(targetUserId);
       targetUser.followers.push(currentUserId);
     }
@@ -86,12 +85,12 @@ exports.toggleFollow = async (req, res) => {
     await targetUser.save();
 
     res.json({
-      message: alreadyFollowing ? "Unfollowed successfully" : "Followed successfully"
+      message: alreadyFollowing
+        ? "Unfollowed successfully"
+        : "Followed successfully"
     });
 
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-};
-
 };

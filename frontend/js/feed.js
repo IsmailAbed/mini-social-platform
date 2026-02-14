@@ -4,6 +4,16 @@ async function loadPosts() {
   const postsContainer = document.getElementById("posts");
   postsContainer.innerHTML = "";
 
+// Redirect if not logged in
+const token = localStorage.getItem("token");
+
+if (!token) {
+  window.location.href = "login.html";
+}
+
+
+
+
   posts.forEach(post => {
     const div = document.createElement("div");
     div.className = "card";
@@ -31,5 +41,11 @@ async function likePost(id) {
   await apiRequest(`/posts/${id}/like`, "PUT");
   loadPosts();
 }
+
+function logout() {
+  localStorage.removeItem("token");
+  window.location.href = "login.html";
+}
+
 
 loadPosts();

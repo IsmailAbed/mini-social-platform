@@ -49,4 +49,49 @@ exports.getUserPosts = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+
+  // Toggle Follow
+exports.toggleFollow = async (req, res) => {
+  try {
+    const targetUserId = req.params.id;
+    const currentUserId = req.user;
+
+    if (targetUserId === currentUserId)
+      return res.status(400).json({ message: "You cannot follow yourself" });
+
+    const targetUser = await User.findById(targetUserId);
+    const currentUser = await User.findById(currentUserId);
+
+    if (!targetUser || !currentUser)
+      return res.status(404).json({ message: "User not found" });
+
+    const alreadyFollowing = currentUser.following.includes(targetUserId);
+
+    if (alreadyFollowing) {
+      // Unfollow
+      currentUser.following = currentUser.following.filter(
+        (id) => id.toString() !== targetUserId
+      );
+
+      targetUser.followers = targetUser.followers.filter(
+        (id) => id.toString() !== currentUserId
+      );
+    } else {
+      // Follow
+      currentUser.following.push(targetUserId);
+      targetUser.followers.push(currentUserId);
+    }
+
+    await currentUser.save();
+    await targetUser.save();
+
+    res.json({
+      message: alreadyFollowing ? "Unfollowed successfully" : "Followed successfully"
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 };

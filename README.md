@@ -52,7 +52,7 @@ A full-stack social media web application built as part of the **CodeAlpha Full 
 
 ### 1️⃣ Clone the Repository
 
-git clone https://github.com/YOUR_USERNAME/mini-social-platform.git
+git clone https://github.com/IsmailAbed/mini-social-platform.git
 cd mini-social-platform
 
 2️⃣ Backend Setup
@@ -139,7 +139,9 @@ DELETE /api/comments/:id
 
 ## 📷 Screenshots
 
-(Add your screenshots here once ready)
+<img width="1500" height="485" alt="image" src="https://github.com/user-attachments/assets/ed622154-30bf-428a-886b-ab51b33f836c" />
+<img width="1116" height="493" alt="image" src="https://github.com/user-attachments/assets/65ca7939-08af-4967-8ce4-e76259c47353" />
+<img width="1568" height="681" alt="image" src="https://github.com/user-attachments/assets/e608bf31-2d58-4a8f-9ab2-ea9daea8cf82" />
 
 ---
 

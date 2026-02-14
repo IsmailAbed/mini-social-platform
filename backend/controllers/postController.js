@@ -65,4 +65,37 @@ exports.deletePost = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+  // Toggle Like
+exports.toggleLike = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post)
+      return res.status(404).json({ message: "Post not found" });
+
+    const userId = req.user;
+
+    const alreadyLiked = post.likes.includes(userId);
+
+    if (alreadyLiked) {
+      // Remove like
+      post.likes = post.likes.filter(
+        (id) => id.toString() !== userId
+      );
+    } else {
+      // Add like
+      post.likes.push(userId);
+    }
+
+    await post.save();
+
+    const updatedPost = await post.populate("likes", "username");
+
+    res.json(updatedPost);
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 };

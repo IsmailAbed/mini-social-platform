@@ -1,0 +1,3 @@
+mongo: 
+username: abed200328z_db_user
+ggy4Y8s6iYnsISIO

@@ -1,0 +1,52 @@
+const User = require("../models/User");
+const Post = require("../models/Post");
+
+// Get User Profile
+exports.getUserProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)
+      .select("-password")
+      .populate("followers", "username")
+      .populate("following", "username");
+
+    if (!user)
+      return res.status(404).json({ message: "User not found" });
+
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Update Profile (only self)
+exports.updateProfile = async (req, res) => {
+  try {
+    if (req.user !== req.params.id)
+      return res.status(403).json({ message: "Not authorized" });
+
+    const { bio } = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      { bio },
+      { new: true }
+    ).select("-password");
+
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Get User Posts
+exports.getUserPosts = async (req, res) => {
+  try {
+    const posts = await Post.find({ user: req.params.id })
+      .populate("user", "username")
+      .sort({ createdAt: -1 });
+
+    res.json(posts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

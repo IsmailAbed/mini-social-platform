@@ -1,167 +1,169 @@
-🌐 CodeAlpha Mini Social Media Platform
+# 🌐 CodeAlpha Mini Social Media Platform
 
-A full-stack social media web application built as part of the CodeAlpha Full Stack Development Internship.
+A full-stack social media web application built as part of the **CodeAlpha Full Stack Development Internship**.
 
-🚀 Tech Stack
-🎨 Frontend
+---
 
-HTML5
+## 🚀 Tech Stack
 
-CSS3
+### 🎨 Frontend
+- HTML5  
+- CSS3  
+- Vanilla JavaScript  
+- LocalStorage (JWT Authentication Storage)
 
-Vanilla JavaScript
+### ⚙ Backend
+- Node.js  
+- Express.js  
+- MongoDB (Local / Atlas)  
+- Mongoose  
+- RESTful API  
+- JWT Authentication  
 
-LocalStorage (JWT Authentication)
+---
 
-⚙ Backend
+## ✨ Features
 
-Node.js
+- User Registration & Login (JWT Authentication)  
+- User Profile Management  
+- Create & Delete Posts  
+- Like / Unlike Posts  
+- Comment System  
+- Follow / Unfollow Users  
+- Protected Routes (Frontend & Backend)  
+- Persistent Database Storage  
 
-Express.js
+---
 
-MongoDB (Mongoose ODM)
+## 🔁 Application Flow
 
-JWT Authentication
+1. User registers an account  
+2. User logs in and receives JWT token  
+3. Token is stored in LocalStorage  
+4. Authenticated user can create posts  
+5. Users can like/unlike posts  
+6. Users can comment on posts  
+7. Users can follow/unfollow other users  
+8. All data is stored securely in MongoDB  
 
-RESTful API
+---
 
-✨ Features
+## ⚙️ How to Run Locally
 
-User Registration & Login (JWT Authentication)
+### 1️⃣ Clone the Repository
 
-Secure Protected Routes
-
-User Profiles
-
-Create & Delete Posts
-
-Like / Unlike Posts
-
-Comment System
-
-Follow / Unfollow Users
-
-Real-time Feed Rendering
-
-Persistent MongoDB Database Storage
-
-🔁 Application Flow
-
-User registers or logs in
-
-JWT token is stored in LocalStorage
-
-User can create posts
-
-Posts appear in the main feed
-
-Users can like or unlike posts
-
-Users can comment on posts
-
-Users can follow or unfollow other users
-
-All data is securely stored in MongoDB
-
-⚙️ How to Run Locally
-1️⃣ Clone the Repository
 git clone https://github.com/YOUR_USERNAME/mini-social-platform.git
 cd mini-social-platform
 
 2️⃣ Backend Setup
-cd backend
-npm install
-npm run dev
 
+cd backend  
+npm install  
+npm run dev  
 
-⚠ Make sure you have a .env file configured:
+⚠ Make sure you have a `.env` file inside the backend folder:
 
-PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/miniSocialDB
-JWT_SECRET=your_secret_key
-
-
-Backend runs on:
-
-http://localhost:5000
+PORT=5000  
+MONGO_URI=your_mongodb_connection_string  
+JWT_SECRET=your_secret_key  
 
 3️⃣ Frontend
 
 Open:
 
-frontend/login.html
+frontend/login.html  
 
+(or use Live Server in VS Code)
 
-Or use Live Server in VS Code.
+---
 
-📦 API Endpoints
-🔐 Authentication
-POST /api/auth/register
-→ Register new user
+## 📦 API Endpoints
 
-POST /api/auth/login
-→ Login user and receive JWT
+### 🔐 Authentication
 
-👤 Users
-GET /api/users/:id
-→ Get user profile
+POST /api/auth/register  
+→ Register new user  
 
-PUT /api/users/:id
-→ Update profile bio
+POST /api/auth/login  
+→ Login user and receive JWT  
 
-PUT /api/users/:id/follow
-→ Follow / Unfollow user
+---
 
-📝 Posts
-POST /api/posts
-→ Create new post
+### 👤 Users
 
-GET /api/posts
-→ Get all posts (Feed)
+GET /api/users/:id  
+→ Get user profile  
 
-GET /api/posts/:id
-→ Get single post
+PUT /api/users/:id  
+→ Update user profile  
 
-DELETE /api/posts/:id
-→ Delete post (owner only)
+PUT /api/users/:id/follow  
+→ Follow / Unfollow user  
 
-PUT /api/posts/:id/like
-→ Like / Unlike post
+GET /api/users/:id/posts  
+→ Get posts by specific user  
 
-💬 Comments
-POST /api/comments
-→ Add comment to post
+---
 
-GET /api/comments/:postId
-→ Get comments for a post
+### 📝 Posts
 
-DELETE /api/comments/:id
-→ Delete comment (owner only)
+POST /api/posts  
+→ Create new post  
 
-🔐 Security
+GET /api/posts  
+→ Get all posts (Feed)  
 
-Passwords are hashed using bcrypt
+GET /api/posts/:id  
+→ Get single post  
 
-Authentication handled using JWT
+DELETE /api/posts/:id  
+→ Delete post (Owner only)  
 
-Protected backend routes with middleware
+PUT /api/posts/:id/like  
+→ Like / Unlike post  
 
-Token-based frontend access control
+---
 
-📷 Screenshots
+### 💬 Comments
 
-(Add your screenshots here once UI is polished)
+POST /api/comments  
+→ Add comment to post  
 
-<img src="screenshot1.png" width="100%" />
+GET /api/comments/:postId  
+→ Get comments for a post  
 
-🎯 Project Highlights
+DELETE /api/comments/:id  
+→ Delete comment (Owner only)  
 
-Full RESTful API architecture
+---
 
-Clean MVC backend structure
+## 📷 Screenshots
 
-Secure authentication flow
+(Add your screenshots here once ready)
 
-Proper database relationships (Users, Posts, Comments, Followers)
+---
 
-Real-world social media logic implementation
+## 🧠 Architecture Overview
+
+Frontend (HTML/CSS/JS)  
+↓  
+REST API (Express.js)  
+↓  
+MongoDB Database  
+
+JWT-based authentication ensures secure communication between client and server.
+
+---
+
+## 🎯 Internship Project Objective
+
+This project demonstrates:
+
+- Full-stack development skills  
+- REST API design  
+- Authentication & authorization  
+- Database modeling & relationships  
+- Clean project structure  
+- Professional Git workflow  
+
+---
